@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<title>BetHorse - Corridas de cavalo e apostas</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="stylelog.css">
+    <link rel="shortcut icon" href="midia/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Antonio&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Vollkorn&display=swap');
+    </style>
+</head>
+<body>
+    <a href="login"><button class="botao_vt"><i style="color: white;" class="fa fa-arrow-left fa-2x"></i></button></a>
+        <div class="tela-fundo">
+            <div class="container" style="width: 30%;">
+                <form class="formulario-login" action="login" method="post">
+                    <span class="titulo-login">Cadastrar</span>
+
+                    <div class="wrap-input100">
+                        <span class="label-input100">Nome completo</span>
+                        <input class="input100" type="text" id="nome" name="nome" placeholder="Nome...">
+                        <span class="focus-input100"></span>
+                    </div>
+                    <div class="wrap-input100">
+                        <span class="label-input100">Email</span>
+                        <input class="input100" type="text" id="email" name="email" placeholder="Endereço de e-mail...">
+                        <span class="focus-input100"></span>
+                    </div>
+                    <div class="wrap-input100">
+                        <span class="label-input100">CPF</span>
+                        <input class="input100" type="text" id="cpf" name="cpf" placeholder="CPF...">
+                        <span class="focus-input100"></span>
+                    </div>
+                    <div class="wrap-input100">
+                        <span class="label-input100">Senha</span>
+                        <input class="input100" type="password" id="pass" name="pass" placeholder="*************">
+                        <span class="focus-input100"></span>
+                    </div>
+                    <div class="wrap-input100">
+                        <span class="label-input100"> Telefone</span>
+                        <input class="input100" type="tel" id="fone" name="fone" placeholder="(XX)XXXXX-XXXX">
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <span for="usuario">
+                        <input type="radio" value="radio-ap" name="Contato">Apostador
+                        <input type="radio" value="radio-dono" name="Contato">Dono de equinos
+                    </span>
+                    
+                    <div class="termos">
+                        <div class="termos-checkbox">
+                            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                            <label class="label-checkbox100" for="ckb1">
+                                <span class="txt1">
+                                    Eu concordo com os 
+                                    <a href="#" class="txt2 hov1">
+                                        Termos de Uso
+                                    </a>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="container-botao-login">
+						<button class="botao-login">Cadastrar</button>
+					</div>
+                </form>
+            </div>
+        </div>
+</body>
+</html>

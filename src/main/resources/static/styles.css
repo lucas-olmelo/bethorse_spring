@@ -1,0 +1,411 @@
+@font-face {
+    font-family: Sugo;
+    src: url(midia/Sugo-Pro-Display-Regular-trial.ttf);
+ }
+
+body{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: white;
+    line-height: 1.5;
+}
+
+header{
+    background: rgb(74, 74, 74);
+    background-color: #002c65;
+    background: linear-gradient(0deg, rgba(0,44,101,1) 0%, rgba(0,74,173,1) 38%, rgba(0,74,173,1) 67%, rgba(0,44,101,1) 100%);
+    position: relative;
+}
+
+.logincad {
+    width: 100%;
+    text-align: right;
+}
+
+.logincad p{
+    color: white;
+    font-family: 'Antonio', sans-serif;
+    font-size: 25px;
+    margin: 0%;
+    padding-right: 2%;
+    padding-top: 0.5%;
+}
+
+nav{
+    position: absolute;
+    text-align: center;
+    font-family: 'Antonio', serif;
+    top: 50%;
+    right: 2%;
+    transform: translate(0, -50%);
+    width: 30%;
+}
+nav ul{
+    padding: 0%;
+    margin: 0%;
+}
+nav li{
+    display: inline;
+    font-weight: bold;
+    margin: 0 5% 0 5%;
+}
+nav a{
+    text-transform: uppercase;
+    color: white;
+    font-size: 30px;
+    text-decoration: none;
+}
+nav a:hover{
+    color: #FF1616;
+}
+ul{
+    list-style: none;
+}
+
+.logo_caixa{
+    margin-left: 5%;
+    width: 30%;
+    transform: translate(0, -18%);
+}
+.logo{
+    padding-top: 2%;
+    padding-bottom: 2%;
+    width: 45%;
+}
+
+.turfe{
+    width: 100%;
+    opacity: 0.8;
+}
+h1{
+    color: #004AAD;
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: 112px;
+    font-family: 'Sugo', serif;
+    margin: 0 auto 0 auto;
+    width: 100%;
+}
+h2{
+    color: #FF1616;
+    text-transform: uppercase;
+    font-size: 56px;
+    font-family: 'Sugo', serif;
+    margin: 0 auto 0 auto;
+    width: 100%;
+}
+.quem{
+    display: flex;
+    padding: 2%;
+}
+.pq{
+    text-align: right;
+    padding: 2%;
+}
+
+.qtxt, .pqtxt{
+    padding: 2%;
+    font-family: 'Antonio', sans-serif;
+    color: black;
+    font-size: 35px;
+}
+.pqtxt{
+    text-align: right;
+    margin-left: 2%;
+    display: inline-block;
+}
+.joquei{
+    padding-right: 2%;
+}
+.cavalo{
+    width: 20%;
+    height: 5%;
+    padding-left: 2%;
+    margin-top: auto;
+    margin-bottom: auto;
+    float: left;
+}
+
+.tech{
+    position: relative;
+    width: 100%;
+}
+.tech img{
+    width: 100%;
+    opacity: 0.6;
+}
+.tech p{
+    font-family: 'Vollkorn', serif;
+    color: white;
+    font-style: italic;
+    font-size: 50px;
+    text-shadow: #866042 0.1em 0.1em 0.2em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: max-content;
+}
+.cad{
+    text-align: center;
+    padding-bottom: 2%;
+}
+.cad img{
+    margin-top: 2%;
+    width: 40%;
+}
+.cad p{
+    font-family: 'Antonio', sans-serif;
+    color: black;
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 0%;
+}
+.map{
+    text-align: center;
+    padding: 2%;
+    background: linear-gradient(white, lightgray);
+}
+.map h2{
+    padding-bottom: 2%;
+}
+.ben{
+    width: 100%;
+    position: relative;
+}
+.ben img{
+    width: 100%;
+    opacity: 0.8;
+}
+.benef{
+    background: linear-gradient(white, lightgray);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    text-align: center;
+    font-family: 'Vollkorn', serif;
+    padding-top: 2%;
+    padding-bottom: 1%;
+}
+.benef h2{
+    font-size: 200px;
+    font-family: 'Vollkorn', serif;
+}
+.benef h3{
+    color: #004AAD;
+    font-size: 56px;
+    text-transform: uppercase;
+    margin: 0 auto 0 auto;
+}
+.benef h4{
+    margin-top: 0%;
+    margin-bottom: 1%;
+    font-size: 32px;
+    font-style: italic;
+}
+.benef p{
+    color: black;
+    font-size: 22px;
+    margin-top: 0%;
+    font-style: italic;
+}
+.video{
+    text-align: center;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    background: linear-gradient(white, lightgray);
+}
+footer{
+    background: linear-gradient(0deg, rgba(0,44,101,1) 0%, rgba(0,74,173,1) 38%, rgba(0,74,173,1) 67%, rgba(0,44,101,1) 100%);
+    color: white;
+    text-align: center;
+    padding: 2%
+}
+footer p{
+    margin: 0%;
+}
+footer img{
+    width: 20%;
+}
+
+hr{
+    color: lightgray;
+    margin: 0%;
+}
+
+/*Página de serviçoes*/
+/*Título da página*/
+.titulo{
+    width: 80%;
+    text-align: center;
+    font-size: 80px;
+    margin: 2% auto 2% auto;
+    color: #004AAD;
+    line-height: 1;
+    font-style: italic;
+}
+/*Tipos de usuários*/
+.tipos{
+    text-align: center;
+}
+.login{
+    display: inline-block;
+    text-align: center;
+    margin: 2%;
+    margin-top: 0%;
+    border-radius: 5%;
+    width: 30%;
+    border-style: solid;
+    border-width: 8px;
+    border-color: #002c65;
+    color: black;
+}
+.login:hover{
+    background-color: rgb(230, 230, 230);
+}
+.login:hover p{
+    color: #FF1616;
+}
+.login h2{
+    font-size: 80px;
+}
+.login img{
+    width: 60%;
+}
+.login p{
+    font-family: 'Antonio', sans-serif;
+    font-size: 34px;
+    width: 90%;
+    margin: 3% auto 3% auto;
+}
+/*Serviços para dono e apostador*/
+.ap, .dn{
+    text-align: center;
+}
+.ap h1, .dn h1{
+    font-size: 80px;
+    width: 80%;
+    margin: 2% auto 2% auto;
+    color: #004AAD;
+}
+.ap h3, .dn h3{
+    color: #FF1616;
+    text-transform: uppercase;
+    font-size: 56px;
+    font-family: 'Sugo', serif;
+    margin: 0 auto 0 auto;
+    width: 100%;
+}
+/*Textos e imagens dos serviços*/
+.system{
+    text-align: center;
+    display: inline-block;
+    width: 30%;
+    color: black;
+}
+.system img {
+    width: 50%;
+}
+
+.system:hover img{
+    transform: scale(1.15);
+}
+
+.system p{
+    font-family: 'Antonio', sans-serif;
+    font-size: 34px;
+    width: 80%;
+    margin: 2% auto 8% auto;
+}
+/*Imagem*/
+.imgap{
+    text-align: center;
+    background: linear-gradient(0deg, rgba(74,74,74,1) 0%, rgba(131,114,29,1) 30%, rgba(74,74,74,1) 80%);
+}
+.imgap img{
+    width: 100%;
+}
+
+/*Página Contato*/
+/*Texto inicial*/
+.tituloContato{
+    text-align: center;
+}
+.tituloContato h2{
+    margin-top: 1%;
+}
+.tituloContato p{
+    font-family: 'Antonio', sans-serif;
+    font-size: 32px;
+    margin: 0 auto 0 auto;
+}
+/*Formulário*/
+form {
+    width: 60%;
+    font-family: 'Antonio', sans-serif;
+    font-size: 24px;
+    margin: auto 20% auto 20%;
+}
+form label, form legend{
+    display: block;
+    margin: 1% 0 0;
+}
+
+fieldset{
+    padding-left: 2%;
+    padding-right: 2%;
+}
+/*Inputs*/
+.input-padrao{
+    display: block;
+    width: 100%;
+    font-size: 15px;
+    padding-top: 1%;
+    padding-bottom: 1%;  
+}
+/*Select*/
+select{
+    width: 28%;
+    font-size: 18px;
+}
+/*Botão*/
+.enviar{
+    width: 40%;
+    font-size: 32px;
+    font-family: 'Antonio', sans-serif;
+    background-color: #004AAD;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    cursor: pointer;
+}
+.enviar:hover{
+    background-color: #002c65;
+    transform: scale(1.1);
+}
+form div{
+    text-align: center;
+}
+form div label{
+    font-size: 20px;
+}
+
+/*Botão flutuante voltar ao topo*/
+.botao_vt{
+    background-color: #004AAD;
+    position: fixed;
+    bottom: 2%;
+    right: 2%;
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    border-color: #002c65;
+    cursor: pointer;
+}
