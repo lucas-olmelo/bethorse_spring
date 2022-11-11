@@ -42,11 +42,8 @@ public class WebController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String RespCadastro(Model modelo, String nome, String email, String cpf, String pass, String fone, String user){
         System.out.println("Resposta do form");
-        ConectarMongo cmd = new ConectarMongo();
-        cmd.insertValues(nome, email, cpf, pass, fone, user);
-        cmd.getValues();
-        // Conectar conecta = new Conectar();
-        // conecta.dataBaseInsert(nome, email, cpf, fone, pass, user);
+        Conectar conecta = new Conectar();
+        conecta.dataBaseInsert(nome, email, cpf, fone, pass, user);
         System.out.println("Valores inseridos");
         return "login";
     }
@@ -54,13 +51,9 @@ public class WebController {
     @RequestMapping("/perfil")
     public String Perfil(Model modelo, String email, String pass){
         System.out.println("Acessando perfil");
-        ConectarMongo cmd = new ConectarMongo();
-        modelo.addAttribute("nome", cmd.Logar(email, pass).get(0));
-        modelo.addAttribute("email", cmd.Logar(email, pass).get(1));
-        modelo.addAttribute("cpf", cmd.Logar(email, pass).get(2));
-        modelo.addAttribute("usuario", cmd.Logar(email, pass).get(3));
-        modelo.addAttribute("senha", cmd.Logar(email, pass).get(4));
-        modelo.addAttribute("telefone", cmd.Logar(email, pass).get(5));
+        Conectar conecta = new Conectar();
+        String nome = conecta.Logar(email, pass);
+        modelo.addAttribute("nome", nome);
         return "perfil";
     }
 
