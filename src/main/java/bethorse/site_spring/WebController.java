@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import bethorse.Conectar.Conectar;
 import bethorse.conectarMongo.ConectarMongo;
 
 @Controller
@@ -44,6 +45,8 @@ public class WebController {
         ConectarMongo cmd = new ConectarMongo();
         cmd.insertValues(nome, email, cpf, pass, fone, user);
         cmd.getValues();
+        // Conectar conecta = new Conectar();
+        // conecta.dataBaseInsert(nome, email, cpf, fone, pass, user);
         System.out.println("Valores inseridos");
         return "login";
     }

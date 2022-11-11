@@ -4,10 +4,9 @@ import java.sql.*;
 public class Conectar {
 
     private static Connection conexao_MySql = null;
-    private static String localBD = "localhost";
-    private static String LINK = "jdbc:mysql://" + localBD + ":3306/springmongo";
-    private static final String usuario = "root";
-    private static final String senha = "Senai123";
+    private static String LINK = "jdbc:mysql://localhost:3306/bethorse";
+    private static final String usuario = "";
+    private static final String senha = "";
 
     // Método para fazer a conexão com um banco de dados MySql
     public Connection connectionMySql() {
@@ -27,7 +26,7 @@ public class Conectar {
             ResultSet rs = stmt.executeQuery("select * from dados");
             System.out.println("Consulta ao banco:");
             while (rs.next()) {
-                System.out.println("cod: " + rs.getInt(1) + " - Nome: " + rs.getString(2) + " - Email: " + rs.getString(3));
+                System.out.println("cpf: " + rs.getString(1) + " - Nome: " + rs.getString(2) + " - Email: " + rs.getString(3));
             }
             con.close();
         } catch (Exception e) {
@@ -35,49 +34,24 @@ public class Conectar {
         }
     }
 
-    public String dataBaseSelect(int code) {
-        Connection connection = connectionMySql();
-        String x = "";
-        String sql = "Select codigo, nome, email "
-                + "from dados "
-                + "where codigo=?";
-
-        PreparedStatement preparedStmt;
-        try {
-            preparedStmt = connection.prepareStatement(sql);
-
-            //Efetua a troca do '?' pelos valores na query
-            preparedStmt.setInt(1, code);
-            ResultSet result = preparedStmt.executeQuery();
-
-            //valida resultado
-            while (result.next()) {
-                int cod = result.getInt("codigo");
-                String name = result.getString("nome");
-                String name2 = result.getString("email");
-                System.out.println("cod: " + cod);
-                System.out.println("name: " + name);
-                System.out.println("email : " + name2);
-                x = name;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return x;
-    }
-
-    public void dataBaseInsert(String Nome, String Email) {
+    public void dataBaseInsert(String Nome, String Email, String cpf, String fone, String senha, String tipo) {
 
         Connection connection = connectionMySql();
-        String sql = "INSERT INTO dados (nome, email) VALUES (?,?)";
+        String sql = "INSERT INTO usuario (cpf, nome, email, senha, telefone, tipo) VALUES (?,?,?,?,?,?)";
         PreparedStatement preparedStmt;
         try {
             preparedStmt = connection.prepareStatement(sql);
 
             //Efetua a troca do '?' pelos valores na query             
-            preparedStmt.setString(1, Nome);
-            preparedStmt.setString(2, Email);
+            preparedStmt.setString(1, cpf);
+            preparedStmt.setString(2, Nome);
+            preparedStmt.setString(3, Email);
+            preparedStmt.setString(4, senha);
+            preparedStmt.setString(5, fone);
+            preparedStmt.setString(6, tipo);
             preparedStmt.execute();
+
+            closeConnectionMySql(connection);
 
         } catch (SQLException e) {
             e.printStackTrace();
