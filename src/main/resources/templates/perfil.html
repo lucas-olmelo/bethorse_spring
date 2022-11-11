@@ -5,8 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BetHorse - Corridas de cavalo e apostas</title>
+    <link rel="shortcut icon" href="midia/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styleprof.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
 <body>
-    <h1 th:text="${nome}"></h1>
+    <div class="tela-fundo">
+        <a href="index.html"><button class="botao_vt"><i style="color: white;" class="fa fa-arrow-left fa-2x"></i></button></a>
+        <a href="login"><button class="botao_logout"><i style="color: white;" class="fa fa-sign-out fa-2x"></i></i></button></a>
+        <div class="img-principal">
+            <img class="bh" src="midia/banner_bh_rbg.png" alt="">
+        
+            <h1>Seja bem vindo, <span th:text="${nome}"></span></h1>
+            <h2 th:text="${usuario}"></h2>
+            <p>Email: <span th:text="${email}"></span></p>
+            
+            
+            <!-- <h1 th:text="${cpf}"></h1>
+            <h1 th:text="${senha}"></h1>
+            <h1 th:text="${telefone}"></h1> -->
+            <p>Baixe o nosso aplicativo!</p>
+            <a href="midia/BetHorse_FINAL.zip" download="BetHorse"><button class="botao_download"><i style="color: white;" class="fa fa-download fa-2x"></i></button></a>
+        </div>
+    </div>
 </body>
 </html>

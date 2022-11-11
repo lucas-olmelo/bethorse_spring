@@ -18,18 +18,15 @@ header{
     position: relative;
 }
 
-.logincad {
-    width: 100%;
-    text-align: right;
-}
-
-.logincad p{
-    color: white;
-    font-family: 'Antonio', sans-serif;
-    font-size: 25px;
-    margin: 0%;
-    padding-right: 2%;
-    padding-top: 0.5%;
+.botao_login{
+    background-color: white;
+    margin-right: 2%;
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    border-color: #002c65;
+    cursor: pointer;
+    display: inline-block;
 }
 
 nav{
@@ -39,7 +36,8 @@ nav{
     top: 50%;
     right: 2%;
     transform: translate(0, -50%);
-    width: 30%;
+    width: 100%;
+    text-align: right;
 }
 nav ul{
     padding: 0%;
@@ -48,7 +46,7 @@ nav ul{
 nav li{
     display: inline;
     font-weight: bold;
-    margin: 0 5% 0 5%;
+    margin: 0 20px 0 20px;
 }
 nav a{
     text-transform: uppercase;
@@ -66,8 +64,8 @@ ul{
 .logo_caixa{
     margin-left: 5%;
     width: 30%;
-    transform: translate(0, -18%);
 }
+
 .logo{
     padding-top: 2%;
     padding-bottom: 2%;

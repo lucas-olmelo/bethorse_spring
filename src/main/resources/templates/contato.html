@@ -23,11 +23,6 @@
 <body>
     <!--Cabeçalho-->
     <header id="header">
-        <section class="logincad">
-            <a href="login">
-                <p>Login/Cadastro</p>
-            </a>
-        </section>
         <div class="logo_caixa">
             <a href="index.html"><img src="midia/bh_blue_rbg.png" title="BetHorse" class="logo"></a>
         </div>
@@ -36,6 +31,11 @@
                 <li><a href="index.html">Início</a></li>
                 <li><a href="servicos">Serviços</a></li>
                 <li><a href="contato">Contato</a></li>
+                <li>
+                    <a href="login">Login
+                        <button class="botao_login"><i class="fa fa-user fa-2x" style="color: #004AAD;"></i></button>
+                    </a>
+                </li>
             </ul>
         </nav>
     </header>
@@ -53,33 +53,34 @@
             </p>
         </div>
         <!--Formulário-->
-        <form name="formContato" method="get" action="mailto:" target="_blank">
+        <form method="post" action="contato">
+            <!-- name="formContato" -->
             <fieldset>
                 <legend>Dados Pessoais</legend>
                 <label for="nomesobrenome"><span style="color: red;">*</span> Nome e Sobrenome</label>
-                <input type="text" id="nomeSn" name="" class="input-padrao" placeholder="Nome" required>
+                <input type="text" id="nome" name="nome" class="input-padrao" placeholder="Nome" required>
 
                 <label for="email"><span style="color: red;">*</span> E-mail</label>
-                <input type="email" id="email" name="" class="input-padrao" required placeholder="seuemail@email.com">
+                <input type="email" id="email" name="email" class="input-padrao" required placeholder="seuemail@email.com">
 
                 <label for="telefone">Telefone</label>
-                <input type="tel" id="telefone" name="" class="input-padrao" placeholder="(XX) XXXXX-XXXX">
+                <input type="tel" id="telefone" name="telefone" class="input-padrao" placeholder="(XX) XXXXX-XXXX">
 
                 <label for="mensagem">Mensagem</label>
-                <textarea name="" id="mensagem" class="input-padrao" cols="70" rows="10" placeholder="Escreva sua mensagem aqui..."></textarea>
+                <textarea id="mensagem" name="mensagem" class="input-padrao" cols="70" rows="10" placeholder="Escreva sua mensagem aqui..."></textarea>
 
                 <label for="contato">Como prefere o nosso contato?
-                    <input type="radio" value="radio-mail" name="Contato">E-mail
-                    <input type="radio" value="radio-telefone" name="Contato">Telefone
-                    <input type="radio" value="radio-whatsapp" name="Contato">Whatsapp
+                    <input type="radio" value="e-mail" name="contato" id="contato">E-mail
+                    <input type="radio" value="telefone" name="contato" id="contato">Telefone
+                    <input type="radio" value="whatsapp" name="contato" id="contato">Whatsapp
                 </label>
                 <label for="horario">Qual o motivo do seu contato
-                    <select>
+                    <select id="motivo" name="motivo">
                         <option>Selecione</option>
-                        <option>Dúvida</option>
-                        <option>Sugestão</option>
-                        <option>Elogio</option>
-                        <option>Reclamação</option>
+                        <option value="dúvida" id="motivo">Dúvida</option>
+                        <option value="sugestão" id="motivo">Sugestão</option>
+                        <option value="elogio" id="motivo">Elogio</option>
+                        <option value="reclamação" id="motivo">Reclamação</option>
                     </select>
                 </label>
             </fieldset>

@@ -39,10 +39,10 @@ public class WebController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String RespCadastro(Model modelo, String nome, String email, long cpf, String pass, String fone){
+    public String RespCadastro(Model modelo, String nome, String email, String cpf, String pass, String fone, String user){
         System.out.println("Resposta do form");
         ConectarMongo cmd = new ConectarMongo();
-        cmd.insertValues(nome, email, cpf, pass, fone);
+        cmd.insertValues(nome, email, cpf, pass, fone, user);
         cmd.getValues();
         System.out.println("Valores inseridos");
         return "login";
@@ -52,8 +52,22 @@ public class WebController {
     public String Perfil(Model modelo, String email, String pass){
         System.out.println("Acessando perfil");
         ConectarMongo cmd = new ConectarMongo();
-        String nome = cmd.Logar(email, pass);
-        modelo.addAttribute("nome", "Olá, " + nome);
+        modelo.addAttribute("nome", cmd.Logar(email, pass).get(0));
+        modelo.addAttribute("email", cmd.Logar(email, pass).get(1));
+        modelo.addAttribute("cpf", cmd.Logar(email, pass).get(2));
+        modelo.addAttribute("usuario", cmd.Logar(email, pass).get(3));
+        modelo.addAttribute("senha", cmd.Logar(email, pass).get(4));
+        modelo.addAttribute("telefone", cmd.Logar(email, pass).get(5));
         return "perfil";
+    }
+
+    @RequestMapping(value = "/contato", method = RequestMethod.POST)
+    public String EnviaFormulario(String nome, String email, String telefone, String mensagem, String contato, String motivo){
+        System.out.println("Enviando os dados para o mongoDb");
+        ConectarMongo cmd = new ConectarMongo();
+        cmd.insertValuesMensagem(nome, email, telefone, mensagem, contato, motivo);
+        cmd.getValuesMensagem();
+        System.out.println("Valores inseridos");
+        return "contato";
     }
 }
