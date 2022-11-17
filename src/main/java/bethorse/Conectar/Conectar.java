@@ -1,12 +1,14 @@
 package bethorse.Conectar;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Conectar {
 
     private static Connection conexao_MySql = null;
     private static String LINK = "jdbc:mysql://localhost:3306/bethorse";
     private static final String usuario = "root";
-    private static final String senha = "Senai123";
+    private static final String senha = "";
 
     // Método para fazer a conexão com um banco de dados MySql
     public Connection connectionMySql() {
@@ -58,10 +60,13 @@ public class Conectar {
         }
     }
 
-    public String Logar(String email, String senha){
+    public List<String> Logar(String email, String senha){
         Connection connection = connectionMySql();
         String sql = "SELECT * FROM usuario WHERE email = ?";
         PreparedStatement preparedStmt;
+
+        List<String> atributos = new ArrayList<>();
+
         try {
             preparedStmt = connection.prepareStatement(sql);
             preparedStmt.setString(1, email);
@@ -69,14 +74,24 @@ public class Conectar {
             ResultSet rs = preparedStmt.executeQuery();
             while (rs.next()) {
                 String senhaSql = rs.getString("senha");
-                if (senhaSql.equals(senha)) return rs.getString("nome");
+
+                if (senhaSql.equals(senha)){
+                    atributos.add(rs.getString("nome"));
+                    atributos.add(rs.getString("email"));
+                    atributos.add(rs.getString("cpf"));
+                    atributos.add(rs.getString("senha"));
+                    atributos.add(rs.getString("telefone"));
+                    atributos.add(rs.getString("tipo"));
+                } 
+                
+                return atributos;
             }
             
             closeConnectionMySql(connection);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return "Senha errada!";
+        return atributos;
     }
 
     public void closeConnectionMySql(Connection con) {

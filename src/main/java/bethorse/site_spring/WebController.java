@@ -1,7 +1,10 @@
 package bethorse.site_spring;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -10,6 +13,12 @@ import bethorse.conectarMongo.ConectarMongo;
 
 @Controller
 public class WebController {
+
+    @RequestMapping("/")
+    public String Home(Model modelo){
+        System.out.println("Home");
+        return "index";
+    }
 
     @RequestMapping("/login")
     public String Login(Model modelo){
@@ -48,13 +57,20 @@ public class WebController {
         return "login";
     }
 
-    @RequestMapping("/perfil")
-    public String Perfil(Model modelo, String email, String pass){
-        System.out.println("Acessando perfil");
+    @PostMapping("/logar")
+    public String Logar(Model modelo, String email, String pass){
         Conectar conecta = new Conectar();
-        String nome = conecta.Logar(email, pass);
-        modelo.addAttribute("nome", nome);
-        return "perfil";
+        List<String> atributos = conecta.Logar(email, pass);
+
+        System.out.println(atributos.size());
+
+        if (atributos.size() != 0){
+            modelo.addAttribute("nome", atributos.get(0));
+            modelo.addAttribute("email", atributos.get(1));
+            return "perfil";
+        }
+        modelo.addAttribute("erro", "Usuário ou senha incorretos!");
+        return "login";
     }
 
     @RequestMapping(value = "/contato", method = RequestMethod.POST)
