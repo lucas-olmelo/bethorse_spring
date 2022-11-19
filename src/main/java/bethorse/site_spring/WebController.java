@@ -67,10 +67,10 @@ public class WebController {
         if (atributos.size() != 0){
             modelo.addAttribute("nome", atributos.get(0));
             modelo.addAttribute("email", atributos.get(1));
-            return "perfil";
+            return "/perfil";
         }
         modelo.addAttribute("erro", "Usuário ou senha incorretos!");
-        return "login";
+        return "/login";
     }
 
     @RequestMapping(value = "/contato", method = RequestMethod.POST)

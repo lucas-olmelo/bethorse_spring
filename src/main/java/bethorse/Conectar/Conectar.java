@@ -6,9 +6,9 @@ import java.util.List;
 public class Conectar {
 
     private static Connection conexao_MySql = null;
-    private static String LINK = "jdbc:mysql://localhost:3306/bethorse";
+    private static String LINK = "jdbc:mysql://localhost:3306/cavalo";
     private static final String usuario = "root";
-    private static final String senha = "";
+    private static final String senha = "Senai123";
 
     // Método para fazer a conexão com um banco de dados MySql
     public Connection connectionMySql() {
@@ -22,24 +22,29 @@ public class Conectar {
         return conexao_MySql;
     }
 
-    public void consulta(Connection con) {
-        try {
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from dados");
-            System.out.println("Consulta ao banco:");
-            while (rs.next()) {
-                System.out.println("cpf: " + rs.getString(1) + " - Nome: " + rs.getString(2) + " - Email: " + rs.getString(3));
-            }
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
     public void dataBaseInsert(String Nome, String Email, String cpf, String fone, String senha, String tipo) {
 
         Connection connection = connectionMySql();
-        String sql = "INSERT INTO usuario (cpf, nome, email, senha, telefone, tipo) VALUES (?,?,?,?,?,?)";
+
+        int idCred = 0;
+        String cred = "INSERT INTO creditos (idCredito, saldo) VALUES (null, 0)";
+        try{
+            PreparedStatement ps = connection.prepareStatement(cred);
+            ps.execute();
+            
+            String query = "select max(idCredito) from creditos;";
+            PreparedStatement stat = connection.prepareStatement(query);
+            ResultSet rs = stat.executeQuery();
+
+            if (rs.next()){
+                idCred = rs.getInt(1);
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        
+        String sql = "INSERT INTO usuario (cpf, nome, email, senha, telefone, tipo, idCredito) VALUES (?,?,?,?,?,?,?)";
+
         PreparedStatement preparedStmt;
         try {
             preparedStmt = connection.prepareStatement(sql);
@@ -51,6 +56,7 @@ public class Conectar {
             preparedStmt.setString(4, senha);
             preparedStmt.setString(5, fone);
             preparedStmt.setString(6, tipo);
+            preparedStmt.setInt(7, idCred);
             preparedStmt.execute();
 
             closeConnectionMySql(connection);
@@ -82,6 +88,7 @@ public class Conectar {
                     atributos.add(rs.getString("senha"));
                     atributos.add(rs.getString("telefone"));
                     atributos.add(rs.getString("tipo"));
+                    atributos.add(rs.getString("idCredito"));
                 } 
                 
                 return atributos;
@@ -92,6 +99,14 @@ public class Conectar {
             e.printStackTrace();
         }
         return atributos;
+    }
+
+    public Double confereSaldo(Connection con){
+        double saldo = 0;
+
+        String sql = "SELECT saldo FROM credito WHERE idCredito = ?";
+
+        return saldo;
     }
 
     public void closeConnectionMySql(Connection con) {
