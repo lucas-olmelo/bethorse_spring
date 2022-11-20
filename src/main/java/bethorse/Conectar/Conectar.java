@@ -123,6 +123,65 @@ public class Conectar {
         return saldo;
     }
 
+    public List<String> retornaUltimasApostas(String cpf){
+        Connection connection = connectionMySql();
+
+        String sql = "SELECT * FROM aposta WHERE cpfApostador = ? ORDER BY idCc DESC LIMIT 5";
+        PreparedStatement preparedStmt;
+
+        List<String> apostas = new ArrayList<>();
+
+        try {
+            preparedStmt = connection.prepareStatement(sql);
+            preparedStmt.setString(1, cpf);
+
+            ResultSet rs = preparedStmt.executeQuery();
+
+            while (rs.next()) {
+                int idCc = rs.getInt("idCc");
+                float valor = rs.getFloat("valor");
+
+                String query = "SELECT * FROM cavalo_corrida WHERE idCavalo_Corrida = ?";
+                preparedStmt = connection.prepareStatement(query);
+                preparedStmt.setInt(1, idCc);
+
+                ResultSet res = preparedStmt.executeQuery();
+
+                while (res.next()) {
+                    int idCorrida = res.getInt("idCorrida");
+                    int idCavalo = res.getInt("idCavalo");
+
+                    String sqlCavalo = "SELECT nomeCavalo FROM cavalo WHERE idCavalo = ?";
+                    preparedStmt = connection.prepareStatement(sqlCavalo);
+                    preparedStmt.setInt(1, idCavalo);
+                    ResultSet result = preparedStmt.executeQuery();
+
+                    while (result.next()) {
+                        String cavalo = result.getString("nomeCavalo");
+
+                        String sqlCorrida = "SELECT nomeCorrida FROM corrida WHERE idCorrida = ?";
+                        preparedStmt = connection.prepareStatement(sqlCorrida);
+                        preparedStmt.setInt(1, idCorrida);
+                        ResultSet rset = preparedStmt.executeQuery();
+
+                        while (rset.next()) {
+                            String corrida = rset.getString("nomeCorrida");
+
+                            DecimalFormat df = new DecimalFormat("R$#,##0.00");
+                            apostas.add(cavalo + " - " + corrida + " (" + df.format(valor) + ")");
+                        }
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        closeConnectionMySql(connection);
+        return apostas;
+    }
+
     public void closeConnectionMySql(Connection con) {
         try {
             if (con != null) {

@@ -62,12 +62,20 @@ public class WebController {
         Conectar conecta = new Conectar();
         List<String> atributos = conecta.Logar(email, pass);
 
-        System.out.println(atributos.size());
-
         if (atributos.size() != 0){
             modelo.addAttribute("nome", atributos.get(0));
             modelo.addAttribute("email", atributos.get(1));
+            modelo.addAttribute("cpf", atributos.get(2));
+            modelo.addAttribute("senha", atributos.get(3));
+            modelo.addAttribute("telefone", atributos.get(4));
+            modelo.addAttribute("tipo", atributos.get(5));
             modelo.addAttribute("saldo", atributos.get(6));
+
+            List<String> apostas = conecta.retornaUltimasApostas(atributos.get(2));
+            for (int i = 0; i < apostas.size(); i++) {
+                modelo.addAttribute("aposta"+(i+1), apostas.get(i));
+            }
+
             return "/perfil";
         }
         modelo.addAttribute("erro", "Usuário ou senha incorretos!");

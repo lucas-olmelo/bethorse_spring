@@ -8,25 +8,52 @@
     <link rel="shortcut icon" href="midia/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="styleprof.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Antonio&display=swap');
+    </style>
 </head>
 <body>
-    <div class="tela-fundo">
+    <header>
         <a href="/"><button class="botao_vt"><i style="color: white;" class="fa fa-arrow-left fa-2x"></i></button></a>
+        <img class="bh" src="midia/bh_bluered_rbg.png" alt="">
         <a href="login"><button class="botao_logout"><i style="color: white;" class="fa fa-sign-out fa-2x"></i></i></button></a>
-        <div class="img-principal">
-            <img class="bh" src="midia/banner_bh_rbg.png" alt="">
+    </header>
+    <div class="info">
         
-            <h1>Seja bem vindo, <span th:text="${nome}"></span></h1>
-            <h2 th:text="${usuario}"></h2>
-            <p>Email: <span th:text="${email}"></span></p>
-            <p>Saldo: R$<span th:text="${saldo}"></span></p>
-            
-            
-            <!-- <h1 th:text="${cpf}"></h1>
-            <h1 th:text="${senha}"></h1>
-            <h1 th:text="${telefone}"></h1> -->
-            <p>Baixe o nosso aplicativo!</p>
-            <a href="midia/BetHorse_FINAL.zip" download="BetHorse"><button class="botao_download"><i style="color: white;" class="fa fa-download fa-2x"></i></button></a>
+        <div class="top">
+            <div class="nome_paragrafo">
+                <h1>Seja bem vindo, <span th:text="${nome}"></span></h1>
+                <h2 th:text="${tipo}"></h2>
+            </div>
+            <div class="saldo_paragrafo">
+                <p>R$</span><span class="saldo" th:text="${saldo}"></p>
+            </div>
+        </div>
+
+        <div th:if="${tipo == 'apostador' || tipo == 'Apostador'}" class="apostas">
+            <h2>Últimas apostas</h2>
+            <div class="ult_apostas">
+                <p><span th:if="${aposta1 != null}" th:text="${aposta1}"></span></p>
+                <p><span th:if="${aposta1 != null}" th:text="${aposta2}"></span></p>
+                <p><span th:if="${aposta1 != null}" th:text="${aposta3}"></span></p>
+                <p><span th:if="${aposta1 != null}" th:text="${aposta4}"></span></p>
+                <p><span th:if="${aposta1 != null}" th:text="${aposta5}"></span></p>
+            </div>
+        </div>
+        
+        <div class="bottom">
+            <div class="informacoes">
+                <p>Nome: <span th:text="${nome}"></span></p>
+                <p>Email: <span th:text="${email}"></span></p>
+                <p>CPF: <span th:text="${cpf}"></span></p>
+                <p>Telefone: <span th:text="${telefone}"></span></p>
+                <a href=""><p>Alterar senha</p></a>
+            </div>
+            <!-- <p th:text="${senha}"></p> -->
+            <div class="download">
+                <p>Baixe o nosso aplicativo!</p>
+                <a href="midia/BetHorse_FINAL.zip" download="BetHorse"><button class="botao_download"><i style="color: white;" class="fa fa-download fa-2x"></i></button></a>
+            </div>
         </div>
     </div>
 </body>
