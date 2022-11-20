@@ -1,14 +1,15 @@
 package bethorse.Conectar;
 import java.sql.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Conectar {
 
     private static Connection conexao_MySql = null;
-    private static String LINK = "jdbc:mysql://localhost:3306/cavalo";
+    private static String LINK = "jdbc:mysql://localhost:3306/bethorse";
     private static final String usuario = "root";
-    private static final String senha = "Senai123";
+    private static final String senha = "";
 
     // Método para fazer a conexão com um banco de dados MySql
     public Connection connectionMySql() {
@@ -82,18 +83,19 @@ public class Conectar {
                 String senhaSql = rs.getString("senha");
 
                 if (senhaSql.equals(senha)){
+                    String saldo = confereSaldo(connection, rs.getInt("idCredito"));
+
                     atributos.add(rs.getString("nome"));
                     atributos.add(rs.getString("email"));
                     atributos.add(rs.getString("cpf"));
                     atributos.add(rs.getString("senha"));
                     atributos.add(rs.getString("telefone"));
                     atributos.add(rs.getString("tipo"));
-                    atributos.add(rs.getString("idCredito"));
+                    atributos.add(saldo);
                 } 
                 
                 return atributos;
             }
-            
             closeConnectionMySql(connection);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -101,10 +103,22 @@ public class Conectar {
         return atributos;
     }
 
-    public Double confereSaldo(Connection con){
-        double saldo = 0;
+    public String confereSaldo(Connection con, int idCred){
+        String saldo = "";
 
-        String sql = "SELECT saldo FROM credito WHERE idCredito = ?";
+        String sql = "SELECT saldo FROM creditos WHERE idCredito = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idCred);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                DecimalFormat df = new DecimalFormat("#,##0.00");
+                saldo = df.format(rs.getDouble("saldo"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         return saldo;
     }

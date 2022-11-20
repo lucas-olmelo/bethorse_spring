@@ -67,6 +67,7 @@ public class WebController {
         if (atributos.size() != 0){
             modelo.addAttribute("nome", atributos.get(0));
             modelo.addAttribute("email", atributos.get(1));
+            modelo.addAttribute("saldo", atributos.get(6));
             return "/perfil";
         }
         modelo.addAttribute("erro", "Usuário ou senha incorretos!");
