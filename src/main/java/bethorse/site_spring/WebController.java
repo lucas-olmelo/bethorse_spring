@@ -2,14 +2,18 @@ package bethorse.site_spring;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import bethorse.Conectar.Conectar;
 import bethorse.conectarMongo.ConectarMongo;
+import bethorse.site_spring.Services.CookieService;
 
 @Controller
 public class WebController {
@@ -57,8 +61,13 @@ public class WebController {
         return "login";
     }
 
+    @RequestMapping("/perfil")
+    public String AcessaPerfil(Model modelo){
+        return "perfil";
+    }
+
     @PostMapping("/logar")
-    public String Logar(Model modelo, String email, String pass){
+    public String Logar(Model modelo, String email, String pass, HttpServletResponse response){
         Conectar conecta = new Conectar();
         List<String> atributos = conecta.Logar(email, pass);
 
@@ -75,6 +84,8 @@ public class WebController {
             for (int i = 0; i < apostas.size(); i++) {
                 modelo.addAttribute("aposta"+(i+1), apostas.get(i));
             }
+
+            CookieService.setCookie(response, "usuarioId", atributos.get(2), 10);
 
             return "/perfil";
         }
