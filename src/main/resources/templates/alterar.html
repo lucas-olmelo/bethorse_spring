@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BetHorse - Corridas de cavalo e apostas</title>
+    <link rel="stylesheet" type="text/css" href="css/stylelog.css">
+    <link rel="shortcut icon" href="midia/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Antonio&display=swap');
+    </style>
+    <script>
+        var win = null;
+        function PopSenha() {
+            pagina = "confirmed";
+            settings = "toolbar = no, location = no, directories = no, status = no, menubar = no, width = 600px, height = 600px";
+            win = window.open(pagina, "Alterar Senha", settings);
+        }
+    </script>
+</head>
+<body>
+    <div class="tela-fundo">
+        <div class="cont">
+            <form class="formulario-login" action="confirmed" method="post">
+                <img class="bh" src="midia/banner_bh_rbg.png" alt="">
+                <span class="titulo-login">Alterar senha</span>
+                <div class="wrap-input100 validate-input">
+                    <input class="input100" type="password" id="senhaAtual" name="senhaAtual" placeholder="Senha atual">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100"> </span>
+                </div>
+                <div class="wrap-input100 validate-input">
+                    <input class="input100" type="password" id="novaSenha" name="novaSenha" placeholder="Nova senha">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100"></span>
+                </div>
+                <div th:if="${erro != null}" th:text="${erro}" class="alert alert-danger" role="alert"></div>
+                <div class="container-botao-login">
+                    <button class="botao-login">Alterar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

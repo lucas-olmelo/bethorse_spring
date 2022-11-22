@@ -2,18 +2,15 @@ package bethorse.site_spring;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-//import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import bethorse.Conectar.Conectar;
 import bethorse.conectarMongo.ConectarMongo;
-//import bethorse.site_spring.Services.CookieService;
 
 @Controller
 public class WebController {
@@ -61,13 +58,13 @@ public class WebController {
         return "login";
     }
 
-    @RequestMapping("/perfil")
-    public String AcessaPerfil(Model modelo){
-        return "perfil";
-    }
+    // @RequestMapping("/perfil")
+    // public String AcessaPerfil(Model modelo){
+    //     return "perfil";
+    // }
 
     @PostMapping("/logar")
-    public String Logar(Model modelo, String email, String pass, HttpServletResponse response){
+    public String Logar(Model modelo, String email, String pass){
         Conectar conecta = new Conectar();
         List<String> atributos = conecta.Logar(email, pass);
 
@@ -80,18 +77,50 @@ public class WebController {
             modelo.addAttribute("tipo", atributos.get(5));
             modelo.addAttribute("saldo", atributos.get(6));
 
+            setEmail(atributos.get(1));
+            setSenha(atributos.get(3));
+
             List<String> apostas = conecta.retornaUltimasApostas(atributos.get(2));
             for (int i = 0; i < apostas.size(); i++) {
                 modelo.addAttribute("aposta"+(i+1), apostas.get(i));
             }
 
-            //CookieService.setCookie(response, "usuarioId", atributos.get(2), 10);
+            List<String> cavalos = conecta.retornaMelhoresCavalos(atributos.get(2));
+            for (int i = 0; i < cavalos.size(); i++) {
+                modelo.addAttribute("cavalo"+(i+1), cavalos.get(i));
+            }
 
             return "/perfil";
         }
         modelo.addAttribute("erro", "Usuário ou senha incorretos!");
         return "/login";
     }
+
+    private String email;
+    private String senha;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    @GetMapping("/logar")
+    public String teste(Model modelo){
+        Logar(modelo, getEmail(), getSenha());
+        return "perfil";
+    }
+
 
     @RequestMapping(value = "/contato", method = RequestMethod.POST)
     public String EnviaFormulario(String nome, String email, String telefone, String mensagem, String contato, String motivo){
@@ -101,5 +130,22 @@ public class WebController {
         cmd.getValuesMensagem();
         System.out.println("Valores inseridos");
         return "contato";
+    }
+
+    @RequestMapping("/alterar")
+    public String alterarSenha(Model modelo){
+        return "alterar";
+    }
+
+    @PostMapping("/confirmed")
+    public String alteracaoConfirmada(Model modelo, String senhaAtual, String novaSenha){
+        Conectar conecta = new Conectar();
+        String senhaBD = conecta.retornaSenha(getEmail(), senhaAtual);
+        if (senhaBD.equals(senhaAtual)){
+            conecta.atualizaSenha(novaSenha, getEmail());
+            return "confirmed";
+        }
+        modelo.addAttribute("erro", "Senha incorreta");
+        return "alterar";
     }
 }

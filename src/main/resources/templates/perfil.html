@@ -11,11 +11,19 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Antonio&display=swap');
     </style>
+    <script>
+        var win = null;
+        function PopSenha() {
+            pagina = "alterar";
+            settings = "toolbar = no, location = no, directories = no, status = no, menubar = no, width = 600px, height = 600px";
+            win = window.open(pagina, "Alterar Senha", settings);
+        }
+    </script>
 </head>
 <body>
     <header>
         <a href="/"><button class="botao_vt"><i style="color: white;" class="fa fa-arrow-left fa-2x"></i></button></a>
-        <img class="bh" src="midia/bh_bluered_rbg.png" alt="">
+        <img class="bh" src="midia/bh_blue_rbg.png" alt="">
         <a href="login"><button class="botao_logout"><i style="color: white;" class="fa fa-sign-out fa-2x"></i></i></button></a>
     </header>
     <div class="info">
@@ -40,6 +48,17 @@
                 <p><span th:if="${aposta1 != null}" th:text="${aposta5}"></span></p>
             </div>
         </div>
+
+        <div th:if="${tipo == 'dono' || tipo == 'Dono'}" class="apostas">
+            <h2>Melhores cavalos</h2>
+            <div class="ult_apostas">
+                <p><span th:if="${cavalo1 != null}" th:text="${cavalo1}"></span></p>
+                <p><span th:if="${cavalo2 != null}" th:text="${cavalo2}"></span></p>
+                <p><span th:if="${cavalo3 != null}" th:text="${cavalo3}"></span></p>
+                <p><span th:if="${cavalo4 != null}" th:text="${cavalo4}"></span></p>
+                <p><span th:if="${cavalo5 != null}" th:text="${cavalo5}"></span></p>
+            </div>
+        </div>
         
         <div class="bottom">
             <div class="informacoes">
@@ -47,12 +66,11 @@
                 <p>Email: <span th:text="${email}"></span></p>
                 <p>CPF: <span th:text="${cpf}"></span></p>
                 <p>Telefone: <span th:text="${telefone}"></span></p>
-                <a href=""><p>Alterar senha</p></a>
+                <a href="" onclick="PopSenha()"><p>Alterar senha</p></a>
             </div>
-            <!-- <p th:text="${senha}"></p> -->
             <div class="download">
                 <p>Baixe o nosso aplicativo!</p>
-                <a href="midia/BetHorse_FINAL.zip" download="BetHorse"><button class="botao_download"><i style="color: white;" class="fa fa-download fa-2x"></i></button></a>
+                <a href="midia/bethorse_interface-master.zip" download="BetHorse"><button class="botao_download"><i style="color: white;" class="fa fa-download fa-2x"></i></button></a>
             </div>
         </div>
     </div>

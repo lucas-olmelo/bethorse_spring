@@ -182,6 +182,86 @@ public class Conectar {
         return apostas;
     }
 
+    public List<String> retornaMelhoresCavalos(String cpf){
+        Connection connection = connectionMySql();
+
+        String sql = "SELECT * FROM cavalo WHERE cpfDono = ? ORDER BY qtdeVitoria DESC LIMIT 5";
+        PreparedStatement preparedStmt;
+
+        List<String> cavalos = new ArrayList<>();
+
+        try {
+            preparedStmt = connection.prepareStatement(sql);
+            preparedStmt.setString(1, cpf);
+
+            ResultSet rs = preparedStmt.executeQuery();
+
+            while (rs.next()) {
+                String nome = rs.getString("nomeCavalo");
+                int vit = rs.getInt("qtdeVitoria");
+                int idade = rs.getInt("idade");
+                int idRaca = rs.getInt("idRaca");
+
+                sql = "SELECT * FROM raca WHERE idRaca = ?";
+
+                preparedStmt = connection.prepareStatement(sql);
+                preparedStmt.setInt(1, idRaca);
+
+                ResultSet res = preparedStmt.executeQuery();
+                while (res.next()) {
+                    String raca = res.getString("nomeRaca");
+
+                    cavalos.add(nome + " (" + raca + ") - " + idade + " anos, " + vit + " vitórias");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return cavalos;
+    }
+
+    public String retornaSenha(String email, String senha){
+        Connection connection = connectionMySql();
+
+        String sql = "SELECT senha FROM usuario WHERE email = ?";
+        PreparedStatement ps;
+
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                return rs.getString("senha");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        closeConnectionMySql(connection);
+        return "erro";
+    }
+
+    public void atualizaSenha(String novaSenha, String email){
+
+        Connection connection = connectionMySql();
+        String sql = "UPDATE usuario SET senha = ? WHERE email = ?";
+        PreparedStatement ps;
+
+        try{
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, novaSenha);
+            ps.setString(2, email);
+            ps.execute();
+            System.out.println("Senha alterada com sucesso");
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        closeConnectionMySql(connection);
+    }
+
     public void closeConnectionMySql(Connection con) {
         try {
             if (con != null) {
