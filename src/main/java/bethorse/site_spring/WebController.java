@@ -6,14 +6,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+//import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import bethorse.Conectar.Conectar;
 import bethorse.conectarMongo.ConectarMongo;
-import bethorse.site_spring.Services.CookieService;
+//import bethorse.site_spring.Services.CookieService;
 
 @Controller
 public class WebController {
@@ -85,7 +85,7 @@ public class WebController {
                 modelo.addAttribute("aposta"+(i+1), apostas.get(i));
             }
 
-            CookieService.setCookie(response, "usuarioId", atributos.get(2), 10);
+            //CookieService.setCookie(response, "usuarioId", atributos.get(2), 10);
 
             return "/perfil";
         }

@@ -9,7 +9,7 @@ public class Conectar {
     private static Connection conexao_MySql = null;
     private static String LINK = "jdbc:mysql://localhost:3306/bethorse";
     private static final String usuario = "root";
-    private static final String senha = "";
+    private static final String senha = "Senai123";
 
     // Método para fazer a conexão com um banco de dados MySql
     public Connection connectionMySql() {

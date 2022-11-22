@@ -16,13 +16,15 @@ header{
     background: linear-gradient(-135deg, #FF1616, #4158d0);
     width: 100%;
     text-align: center;
+    position: relative;
 }
 
 .botao_vt{
     background-color: #004AAD;
     position: absolute;
     left: 2%;
-    transform: translateY(65%);
+    top: 50%;
+    transform: translateY(-50%);
     width: 60px;
     height: 60px;
     border-radius: 50px;
@@ -38,7 +40,8 @@ header img{
     background-color: #004AAD;
     position: absolute;
     right: 2%;
-    transform: translateY(65%);
+    top: 50%;
+    transform: translateY(-50%);
     width: 60px;
     height: 60px;
     border-radius: 50px;
